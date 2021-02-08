@@ -66,6 +66,10 @@ namespace LinqPlusLambda
             var result9 = products.Where(p => p.Id == 30).SingleOrDefault();
             Console.WriteLine("Single or Default test2: " + result9);
             Console.WriteLine();
+
+            //Max: Retorna o maior valor
+            var result10 = products.Max(p => p.Price);
+            Console.WriteLine("Max price: " + result10);
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
