@@ -37,6 +37,7 @@ namespace LinqPlusLambda
             //Combinação de WHERE com SELECT
             var result2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
             Print("Names of products from Tools", result2);
+
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
