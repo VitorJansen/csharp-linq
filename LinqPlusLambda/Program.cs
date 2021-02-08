@@ -54,9 +54,17 @@ namespace LinqPlusLambda
             //FirstOrDefault: Pegar o primeiro resultado ou retornar nulo
             var result6 = products.FirstOrDefault();
             Console.WriteLine("First or Default test1: " + result6);
-            //exemplo FOD com resultado nulo
+            //exemplo FoD com resultado nulo
             var result7 = products.Where(p => p.Price > 3000.0).FirstOrDefault();
-            Console.WriteLine("First or Default test1: " + result7);
+            Console.WriteLine("First or Default test2: " + result7);
+            Console.WriteLine();
+
+            //SingleOrDefault: Retorna 1 resultado ou nulo
+            var result8 = products.Where(p => p.Id == 3).SingleOrDefault();
+            Console.WriteLine("Single or Default test1: " + result8);
+            //exemplo SoD com resultado nulo
+            var result9 = products.Where(p => p.Id == 30).SingleOrDefault();
+            Console.WriteLine("Single or Default test2: " + result9);
             Console.WriteLine();
         }
 
