@@ -50,6 +50,14 @@ namespace LinqPlusLambda
             //Pular e pegar resultados em um range determinado (Skip e take)
             var result5 = result4.Skip(2).Take(4);
             Print("Skip the first 2 and Take the next 4", result5);
+
+            //FirstOrDefault: Pegar o primeiro resultado ou retornar nulo
+            var result6 = products.FirstOrDefault();
+            Console.WriteLine("First or Default test1: " + result6);
+            //exemplo FOD com resultado nulo
+            var result7 = products.Where(p => p.Price > 3000.0).FirstOrDefault();
+            Console.WriteLine("First or Default test1: " + result7);
+            Console.WriteLine();
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
