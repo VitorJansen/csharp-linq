@@ -74,7 +74,11 @@ namespace LinqPlusLambda
             //Min: Retorna o menor valor
             var result11 = products.Min(p => p.Price);
             Console.WriteLine("Min price: " + result11);
-            
+            Console.WriteLine();
+
+            //Soma de valores
+            var result12 = products.Where(p => p.Category.Id == 1).Sum(p => p.Price);
+            Console.WriteLine("Category 1, sum prices: " + result12);
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
