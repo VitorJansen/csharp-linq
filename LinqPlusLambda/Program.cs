@@ -42,6 +42,10 @@ namespace LinqPlusLambda
             //Select com objeto anonimo que tem caracteristicas especificas
             var result3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name});
             Print("Names started with C and anonymous object", result3);
+
+            //Ordernar a lista com OrderBy e ThenBy
+            var result4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name);
+            Print("Tier 1, order by price then by name", result4);
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
