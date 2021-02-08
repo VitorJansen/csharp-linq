@@ -38,6 +38,10 @@ namespace LinqPlusLambda
             var result2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
             Print("Names of products from Tools", result2);
 
+
+            //Select com objeto anonimo que tem caracteristicas especificas
+            var result3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name});
+            Print("Names started with C and anonymous object", result3);
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
