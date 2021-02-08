@@ -46,6 +46,10 @@ namespace LinqPlusLambda
             //Ordernar a lista com OrderBy e ThenBy
             var result4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name);
             Print("Tier 1, order by price then by name", result4);
+
+            //Pular e pegar resultados em um range determinado (Skip e take)
+            var result5 = result4.Skip(2).Take(4);
+            Print("Skip the first 2 and Take the next 4", result5);
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
