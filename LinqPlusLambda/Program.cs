@@ -70,6 +70,11 @@ namespace LinqPlusLambda
             //Max: Retorna o maior valor
             var result10 = products.Max(p => p.Price);
             Console.WriteLine("Max price: " + result10);
+
+            //Min: Retorna o menor valor
+            var result11 = products.Min(p => p.Price);
+            Console.WriteLine("Min price: " + result11);
+            
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
