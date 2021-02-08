@@ -79,6 +79,13 @@ namespace LinqPlusLambda
             //Soma de valores
             var result12 = products.Where(p => p.Category.Id == 1).Sum(p => p.Price);
             Console.WriteLine("Category 1, sum prices: " + result12);
+
+            //Media dos valores
+            var result13 = products.Where(p => p.Category.Id == 1).Average(p => p.Price);
+            Console.WriteLine("Category 1 Average prices: " + result13);
+            //Media: Programação para não gerar exceção caso não dê para calcular (define valor padrão como 0.0).
+            var result14 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).DefaultIfEmpty(0.0).Average();
+            Console.WriteLine("Category 5 Average prices: " + result14);
         }
 
         static void Print<T>(string message, IEnumerable<T> collection)
