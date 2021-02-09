@@ -31,24 +31,50 @@ namespace LinqPlusLambda
             };
 
             //Exemplo de uso cláusula WHERE e condicionais múltiplas
-            var result1 = products.Where(p => p.Category.Tier == 1 && p.Price < 900.0);
+            //var result1 = products.Where(p => p.Category.Tier == 1 && p.Price < 900.0);
+            var result1 =
+                from p in products
+                where p.Category.Tier == 1 && p.Price < 900.0
+                select p;
             Print("Products where Tier = 1 and Price < 900", result1);
 
             //Combinação de WHERE com SELECT
-            var result2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
+            //var result2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
+            var result2 =
+                from p in products
+                where p.Category.Name == "Tools"
+                select p.Name;
             Print("Names of products from Tools", result2);
 
 
             //Select com objeto anonimo que tem caracteristicas especificas
-            var result3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name});
+            //var result3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name});
+            var result3 =
+                from p in products
+                where p.Name[0] == 'C'
+                select new
+                {
+                    p.Name,
+                    p.Price,
+                    CategoryName = p.Category.Name
+                };
             Print("Names started with C and anonymous object", result3);
 
             //Ordernar a lista com OrderBy e ThenBy
-            var result4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name);
+            //var result4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name);
+            var result4 =
+                from p in products
+                where p.Category.Tier == 1
+                orderby p.Name
+                orderby p.Price
+                select p;
             Print("Tier 1, order by price then by name", result4);
 
             //Pular e pegar resultados em um range determinado (Skip e take)
-            var result5 = result4.Skip(2).Take(4);
+            //var result5 = result4.Skip(2).Take(4);
+            var result5 =
+                (from p in result4
+                 select p).Skip(2).Take(4);
             Print("Skip the first 2 and Take the next 4", result5);
 
             //FirstOrDefault: Pegar o primeiro resultado ou retornar nulo
@@ -93,7 +119,9 @@ namespace LinqPlusLambda
             Console.WriteLine();
 
             //GroupBy: Agrupar determinados valores
-            var r16 = products.GroupBy(p => p.Category);
+            var r16 = 
+                from p in products
+                group p by p.Category;
             foreach (IGrouping<Category, Product> group in r16)
             {
                 Console.WriteLine("Category " + group.Key.Name + ":");
